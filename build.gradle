@@ -8,6 +8,14 @@
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'maven-publish'
+
+group = 'fr.univ-nantes.julestar'
+archivesBaseName = 'uima-tokens-ner'
+description = 'A named entity recognition engine based on UIMA Tokens regex'
+version = '0.1'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -40,7 +48,6 @@ dependencies {
 }
 
 
-
 task jcasgen(type: JavaExec) {
 	description = 'Generate UIMA TS classes'
 	ext.srcFile = file("$projectDir/src/main/resources/TokensNER_TS.xml")
@@ -59,4 +66,88 @@ task jcasgen(type: JavaExec) {
 // UIMA type system is needed for Java compile
 compileJava.source jcasgen.outputs, sourceSets.main.java
 
+
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+if(hasProperty("signing.keyId")) {
+	// activate signing of artifacts, only if signing is configured properly
+	signing {
+		sign configurations.archives
+	}
+}
+
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			groupId group
+			artifactId archivesBaseName
+			version version
+
+			from components.java
+		}
+	}
+}
+
+if(hasProperty("ossrh.username")) {
+	uploadArchives {
+		repositories {
+		  mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+	
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+			  authentication(userName: project.getProperty("ossrh.username"), password: project.getProperty("ossrh.password"))
+			}
+	
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+			  authentication(userName: project.getProperty("ossrh.username"), password: project.getProperty("ossrh.password"))
+			}
+	
+			pom.project {
+			  name archivesBaseName
+			  packaging 'jar'
+			  // optionally artifactId can be defined here
+			  description getProperty("description")
+			  url 'https://github.com/JuleStar/uima-tokens-ner'
+	
+			  scm {
+				  connection 'scm:git:git@github.com:julestar/uima-tokens-ner.git'
+				  developerConnection 'scm:git:git@github.com:julestar/uima-tokens-ner.git'
+				  url 'git@github.com:julestar/uima-tokens-ner.git'
+			  }
+	
+			  licenses {
+				  license {
+					  name 'The Apache License, Version 2.0'
+					  url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+				  }
+			  }
+	
+			  developers {
+				  developer {
+					  id getProperty("developer.id")
+					  name getProperty("developer.name")
+					  email getProperty("developer.email")
+				  }
+			  }
+			}
+		  }
+		}
+	}
+} else {
+	def msg = "Publishing to maven central (task uploadArchives) is not possible since no gradle property file is found (use \"\$ cp gradle.properties.sample gradle.properties\")"
+	logger.warn(msg)
+}
 

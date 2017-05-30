@@ -1,0 +1,8 @@
+ossrh.username=toto
+ossrh.password=thePasswd
+developer.id=id
+developer.name=theName
+developer.email=theMail
+signing.keyId=YourKeyId
+signing.password=YourPublicKeyPassword
+signing.secretKeyRingFile=PathToYourKeyRingFile
