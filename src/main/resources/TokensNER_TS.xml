@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>TermSuiteTypeSystem</name>
+  <description>This Type System gathers Type Systems required by every UIMA CAS processors used within the fr.univnantes.termsuite.</description>
+  <version>1.0</version>
+  <vendor>University of Nantes (LINA, UMR CNRS 6241)</vendor>
+  <imports />
+  <types>
+    <typeDescription>
+      <name>fr.univnantes.julestar.tokensner.model.NamedEntity</name>
+      <description/>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+	      <featureDescription>
+	          <name>neType</name>
+	          <description/>
+	          <rangeTypeName>uima.cas.String</rangeTypeName>
+	        </featureDescription>
+	        <featureDescription>
+	          <name>pattern</name>
+	          <description>The list of regex matcher labels (e.g. [N, A, A, C, A] )</description>
+	          <rangeTypeName>uima.cas.String</rangeTypeName>
+	          <multipleReferencesAllowed>false</multipleReferencesAllowed>
+	        </featureDescription>
+	        <featureDescription>
+	          <name>ruleName</name>
+	          <description>The unique name of the spotting rule matched</description>
+	          <rangeTypeName>uima.cas.String</rangeTypeName>
+	        </featureDescription>
+		</features>
+	</typeDescription>
+  </types>
+</typeSystemDescription>

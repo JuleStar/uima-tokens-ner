@@ -1,0 +1,22 @@
+import fr.univnantes.termsuite.types.TermSuiteTypeSystem;
+use fr.univnantes.termsuite.types.WordAnnotation;
+java-matcher: IsInFirstNameLexicon;
+java-matcher: IsInPersonTitlesLexicon;
+set inline = false;
+
+matcher FirstName: [IsInFirstNameLexicon];
+matcher Title: [IsInPersonTitlesLexicon];
+matcher LastName: [Capitalized | TitleCased];
+matcher De as D: [text == "de"];
+matcher Du as D: [text == "du"];
+matcher La as L: [text == "la"];
+matcher Le as L: [text == "le"];
+matcher Des as D: [text == "des"];
+
+rule "simple": FirstName LastName;
+rule "noble1": FirstName Du LastName;
+rule "noble2": FirstName De La LastName;
+rule "noble3": FirstName De Le LastName;
+rule "noble4": FirstName Des LastName;
+rule "title": Title LastName;
+
