@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Tue May 30 11:22:06 CEST 2017 */
+/* First created by JCasGen Tue May 30 14:21:47 CEST 2017 */
 package fr.univnantes.julestar.tokensner.model;
 
 import org.apache.uima.jcas.JCas; 
@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Tue May 30 11:22:06 CEST 2017
- * XML source: /home/cram-d/tmp/uima-tokens-ner/src/main/resources/TokensNER_TS.xml
+ * Updated by JCasGen Tue May 30 14:21:47 CEST 2017
+ * XML source: /home/cram-d/git/tokens-ner/src/main/resources/TokensNER_TS.xml
  * @generated */
 public class NamedEntity extends Annotation {
   /** @generated
