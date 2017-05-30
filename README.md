@@ -7,7 +7,7 @@ A named entity recognition engine based on UIMA Tokens regex
 ## Spotting named enitities of type `Person`
 
 ```java
-Lang lang = Lang.fr;
+Lang lang = Lang.FR;
 
 // The tokenizer AE, borrowed from TermSuite
 AnalysisEngineDescription tokenizerAE = TermSuiteAEFactory.createWordTokenizerAEDesc(lang);
