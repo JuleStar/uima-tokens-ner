@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Tue May 30 10:32:33 CEST 2017 */
+/* First created by JCasGen Tue May 30 11:22:06 CEST 2017 */
 package fr.univnantes.julestar.tokensner.model;
 
 import org.apache.uima.jcas.JCas;
@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Tue May 30 10:32:33 CEST 2017
+ * Updated by JCasGen Tue May 30 11:22:06 CEST 2017
  * @generated */
 public class NamedEntity_Type extends Annotation_Type {
   /** @generated 

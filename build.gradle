@@ -17,6 +17,11 @@ archivesBaseName = 'uima-tokens-ner'
 description = 'A named entity recognition engine based on UIMA Tokens regex'
 version = '0.1'
 
+// generate gradle wrapper
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0' //we want gradle 3.0 to run this project
+}
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use jcenter for resolving your dependencies.
