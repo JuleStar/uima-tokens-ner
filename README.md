@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/julestar/uima-tokens-ner
+.svg?branch=master)](https://travis-ci.org/julestar/uima-tokens-ner)
+
 A named entity recognition engine based on UIMA Tokens regex
 
 # Usage
